@@ -1,0 +1,49 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class crew {
+   name: text
+   role: text
+   experience: interval
+   id: integer
+}
+class discovery {
+   launch_date: date
+   destination: text
+   crew_id: integer
+   id: integer
+}
+class image {
+   capture_date: date
+   resolution: integer
+   probe_id: integer
+   id: integer
+}
+class jupiter {
+   size: integer
+   distance_from_earth: integer
+   atmospheric_composition: text[]
+   id: integer
+}
+class probe {
+   launch_date: date
+   mission_duration: interval
+   jupiter_id: integer
+   id: integer
+}
+class surface {
+   depth: integer
+   composition: text[]
+   temperature: integer
+   jupiter_id: integer
+   id: integer
+}
+
+discovery  -[#595959,plain]-^  crew      : "crew_id:id"
+image      -[#595959,plain]-^  probe     : "probe_id:id"
+probe      -[#595959,plain]-^  jupiter   : "jupiter_id:id"
+surface    -[#595959,plain]-^  jupiter   : "jupiter_id:id"
+@enduml
